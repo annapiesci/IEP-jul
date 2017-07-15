@@ -1,14 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
+        
+        <link rel="stylesheet" href="css/style.css"></link>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+  <div class="login-page">
+  <div class="form">
+    <h:form class="register-form">
+        <h:inputText a:placeholder="name"></h:inputText>
+        <h:inputSecret a:placeholder="password"></h:inputSecret>
+        <h:inputText a:placeholder="email address"></h:inputText>
+        <h:commandButton value="register" class="cbutton" action="#"></h:commandButton>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </h:form>
+    <h:form class="login-form">
+        <h:inputText a:placeholder="username"></h:inputText>
+        <h:inputSecret  a:placeholder="password"></h:inputSecret>
+        <h:commandButton value="login" action="#" class="cbutton"></h:commandButton>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </h:form>
+  </div>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
     </h:body>
 </html>
 
