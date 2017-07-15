@@ -7,5 +7,13 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pia1?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
+    <mapping resource="entities/Session.hbm.xml"/>
+    <mapping resource="entities/Presentation.hbm.xml"/>
+    <mapping resource="entities/File.hbm.xml"/>
+    <mapping resource="entities/User.hbm.xml"/>
+    <mapping resource="entities/Message.hbm.xml"/>
+    <mapping resource="entities/Conference.hbm.xml"/>
+    <mapping resource="entities/Picture.hbm.xml"/>
+    <mapping resource="entities/Favorite.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

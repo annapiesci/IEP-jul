@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-Jul-2017 18:20:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Session" table="session" catalog="pia1" optimistic-lock="version">
+        <id name="idSession" type="java.lang.Integer">
+            <column name="idSession" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="conference" class="entities.Conference" fetch="select">
+            <column name="idConfFK" not-null="true" />
+        </many-to-one>
+        <property name="type" type="string">
+            <column name="type" length="15" not-null="true">
+                <comment>open, close, workshop, break</comment>
+            </column>
+        </property>
+        <property name="room" type="string">
+            <column name="room" length="45" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" not-null="true" />
+        </property>
+        <property name="starts" type="time">
+            <column name="starts" length="8" />
+        </property>
+        <property name="ends" type="time">
+            <column name="ends" length="8" />
+        </property>
+        <set name="pictures" table="picture" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSession" not-null="true" />
+            </key>
+            <one-to-many class="entities.Picture" />
+        </set>
+        <set name="presentations" table="presentation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSession" not-null="true" />
+            </key>
+            <one-to-many class="entities.Presentation" />
+        </set>
+    </class>
+</hibernate-mapping>

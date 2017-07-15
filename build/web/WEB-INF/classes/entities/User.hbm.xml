@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-Jul-2017 18:20:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.User" table="user" catalog="pia1" optimistic-lock="version">
+        <id name="idUser" type="java.lang.Integer">
+            <column name="idUser" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="60" not-null="true" />
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" length="60" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="60" not-null="true" unique="true" />
+        </property>
+        <property name="institution" type="string">
+            <column name="institution" length="60" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="confirmedPsw" type="string">
+            <column name="confirmedPSW" length="45" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="1" />
+        </property>
+        <property name="picture" type="string">
+            <column name="picture" length="200" />
+        </property>
+        <property name="shirtSize" type="string">
+            <column name="shirtSize" length="3" />
+        </property>
+        <property name="linkedin" type="string">
+            <column name="linkedin" length="200" />
+        </property>
+        <property name="role" type="string">
+            <column name="role" length="1" />
+        </property>
+        <set name="favoritesForIdUser" table="favorite" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUser" not-null="true" />
+            </key>
+            <one-to-many class="entities.Favorite" />
+        </set>
+        <set name="conferences" table="attends" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idUserFK" not-null="true" />
+            </key>
+            <many-to-many entity-name="entities.Conference">
+                <column name="idConfFK" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="conferences_1" table="moderator" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idModerator" not-null="true" />
+            </key>
+            <many-to-many entity-name="entities.Conference">
+                <column name="idConf" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="favoritesForIdFavoriteUser" table="favorite" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idFavoriteUser" not-null="true" />
+            </key>
+            <one-to-many class="entities.Favorite" />
+        </set>
+        <set name="messagesForIdUserFor" table="message" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUserFor" not-null="true" />
+            </key>
+            <one-to-many class="entities.Message" />
+        </set>
+        <set name="messagesForIdUserFrom" table="message" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUserFrom" not-null="true" />
+            </key>
+            <one-to-many class="entities.Message" />
+        </set>
+    </class>
+</hibernate-mapping>

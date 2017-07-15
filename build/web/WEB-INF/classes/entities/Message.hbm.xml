@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-Jul-2017 18:20:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Message" table="message" catalog="pia1" optimistic-lock="version">
+        <id name="idMessage" type="java.lang.Integer">
+            <column name="idMessage" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userByIdUserFor" class="entities.User" fetch="select">
+            <column name="idUserFor" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userByIdUserFrom" class="entities.User" fetch="select">
+            <column name="idUserFrom" not-null="true" />
+        </many-to-one>
+        <property name="content" type="string">
+            <column name="content" length="500" not-null="true" />
+        </property>
+        <property name="subject" type="string">
+            <column name="subject" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

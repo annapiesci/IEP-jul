@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-Jul-2017 18:20:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Conference" table="conference" catalog="pia1" optimistic-lock="version">
+        <id name="idConference" type="java.lang.Integer">
+            <column name="idConference" />
+            <generator class="identity" />
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="60" not-null="true" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="60" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="60" not-null="true" />
+        </property>
+        <property name="venue" type="string">
+            <column name="venue" length="60" not-null="true" />
+        </property>
+        <property name="rooms" type="string">
+            <column name="rooms" length="60" not-null="true" />
+        </property>
+        <property name="starts" type="date">
+            <column name="starts" length="10" />
+        </property>
+        <property name="ends" type="date">
+            <column name="ends" length="10" />
+        </property>
+        <property name="field" type="string">
+            <column name="field" length="60" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <set name="users" table="moderator" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idConf" not-null="true" />
+            </key>
+            <many-to-many entity-name="entities.User">
+                <column name="idModerator" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="presentations" table="presentation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idConference" not-null="true" />
+            </key>
+            <one-to-many class="entities.Presentation" />
+        </set>
+        <set name="sessions" table="session" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idConfFK" not-null="true" />
+            </key>
+            <one-to-many class="entities.Session" />
+        </set>
+        <set name="users_1" table="attends" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idConfFK" not-null="true" />
+            </key>
+            <many-to-many entity-name="entities.User">
+                <column name="idUserFK" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

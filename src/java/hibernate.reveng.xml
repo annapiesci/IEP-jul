@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="pia1"/>
+  <table-filter match-name="file"/>
+  <table-filter match-name="message"/>
+  <table-filter match-name="attends"/>
+  <table-filter match-name="moderator"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="session"/>
+  <table-filter match-name="conference"/>
+  <table-filter match-name="picture"/>
+  <table-filter match-name="presentation"/>
+  <table-filter match-name="favorite"/>
+</hibernate-reverse-engineering>
