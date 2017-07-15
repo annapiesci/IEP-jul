@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         
@@ -12,10 +13,30 @@
   <div class="login-page">
   <div class="form">
     <h:form class="register-form">
-        <h:inputText a:placeholder="name"></h:inputText>
-        <h:inputSecret a:placeholder="password"></h:inputSecret>
-        <h:inputText a:placeholder="email address"></h:inputText>
-        <h:commandButton value="register" class="cbutton" action="#"></h:commandButton>
+        <h:inputText a:placeholder="name" value="#{register.name}"></h:inputText>
+        <h:inputText a:placeholder="surname" value="#{register.surname}"></h:inputText>
+        <h:inputText a:placeholder="email address" value="#{register.email}"></h:inputText>
+        <h:inputText a:placeholder="institution" value="#{register.institution}"></h:inputText>
+        <h:inputText a:placeholder="username" value="#{register.username}"></h:inputText>
+        <h:inputSecret a:placeholder="password" value="#{register.password}"></h:inputSecret>
+        <h:inputSecret a:placeholder="confirm password" value="#{register.confirmedPsw}"></h:inputSecret>
+        <h:selectOneMenu class="menu" value="#{register.gender}">
+            <f:selectItem itemValue="F" itemLabel="female"/>
+            <f:selectItem itemValue="M" itemLabel="male"/>
+        </h:selectOneMenu>
+        <h:inputText a:placeholder="profile picture link" value="#{register.picture}"></h:inputText>
+        <h:selectOneMenu class="menu" value="#{register.shirtSize}">
+            <f:selectItem itemValue="XS" itemLabel="XS"/>
+            <f:selectItem itemValue="S" itemLabel="S"/>
+            <f:selectItem itemValue="M" itemLabel="M"/>
+            <f:selectItem itemValue="L" itemLabel="L"/>
+            <f:selectItem itemValue="XL" itemLabel="XL"/>
+            <f:selectItem itemValue="XXL" itemLabel="XXL"/>
+        </h:selectOneMenu>
+        <h:inputText a:placeholder="linkedin profile link" value="#{register.linkedin}"></h:inputText>
+        
+        
+        <h:commandButton value="register" class="cbutton" action="#{register.newUser()}"></h:commandButton>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </h:form>
     <h:form class="login-form">
