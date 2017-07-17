@@ -6,7 +6,19 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        You have successfully entered the site!
+        <h:form>
+            Hello, <h:outputText value="#{login.user.username}"></h:outputText><br></br>
+            Your basic info: <br></br>
+            First name: <h:outputText value="#{login.user.name}"></h:outputText><br></br>
+            Last name: <h:outputText value="#{login.user.surname}"></h:outputText><br></br>
+            Institution:<h:outputText value="#{login.user.institution}"></h:outputText><br></br>
+            Email: <h:outputText value="#{login.user.email}"></h:outputText><br></br>
+            Username: <h:outputText value="#{login.user.username}"></h:outputText><br></br>
+            Gender: <h:outputText value="#{login.user.gender}"></h:outputText><br></br>
+            Linkedin: <h:outputText value="#{login.user.linkedin}"></h:outputText><br></br>
+                                 
+            <h:commandLink action="#{login.logout()}" value="LOGOUT"></h:commandLink>
+        </h:form>
     </h:body>
 </html>
 

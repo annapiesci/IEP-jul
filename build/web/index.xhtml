@@ -13,19 +13,19 @@
   <div class="login-page">
   <div class="form">
     <h:form class="register-form">
-        <h:inputText a:placeholder="name" value="#{register.name}"></h:inputText>
-        <h:inputText a:placeholder="surname" value="#{register.surname}"></h:inputText>
-        <h:inputText a:placeholder="email address" value="#{register.email}"></h:inputText>
-        <h:inputText a:placeholder="institution" value="#{register.institution}"></h:inputText>
-        <h:inputText a:placeholder="username" value="#{register.username}"></h:inputText>
-        <h:inputSecret a:placeholder="password" value="#{register.password}"></h:inputSecret>
-        <h:inputSecret a:placeholder="confirm password" value="#{register.confirmedPsw}"></h:inputSecret>
-        <h:selectOneMenu class="menu" value="#{register.gender}">
+        <h:inputText required="true" a:placeholder="name" value="#{login.name}"></h:inputText>
+        <h:inputText required="true" a:placeholder="surname" value="#{login.surname}"></h:inputText>
+        <h:inputText required="true" a:placeholder="email address" value="#{login.email}"></h:inputText>
+        <h:inputText a:placeholder="institution" value="#{login.institution}"></h:inputText>
+        <h:inputText required="true" a:placeholder="username" value="#{login.username}"></h:inputText>
+        <h:inputSecret required="true" a:placeholder="password" value="#{login.password}"></h:inputSecret>
+        <h:inputSecret required="true" a:placeholder="confirm password" value="#{login.confirmedPsw}"></h:inputSecret>
+        <h:selectOneMenu class="menu" value="#{login.gender}">
             <f:selectItem itemValue="F" itemLabel="female"/>
             <f:selectItem itemValue="M" itemLabel="male"/>
         </h:selectOneMenu>
-        <h:inputText a:placeholder="profile picture link" value="#{register.picture}"></h:inputText>
-        <h:selectOneMenu class="menu" value="#{register.shirtSize}">
+        <h:inputText a:placeholder="profile picture link" value="#{login.picture}"></h:inputText>
+        <h:selectOneMenu class="menu" value="#{login.shirtSize}">
             <f:selectItem itemValue="XS" itemLabel="XS"/>
             <f:selectItem itemValue="S" itemLabel="S"/>
             <f:selectItem itemValue="M" itemLabel="M"/>
@@ -33,15 +33,15 @@
             <f:selectItem itemValue="XL" itemLabel="XL"/>
             <f:selectItem itemValue="XXL" itemLabel="XXL"/>
         </h:selectOneMenu>
-        <h:inputText a:placeholder="linkedin profile link" value="#{register.linkedin}"></h:inputText>
+        <h:inputText a:placeholder="linkedin profile link" value="#{login.linkedin}"></h:inputText>
         
         
-        <h:commandButton value="register" class="cbutton" action="#{register.newUser()}"></h:commandButton>
+        <h:commandButton value="register" class="cbutton" action="#{login.newUser()}"></h:commandButton>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </h:form>
     <h:form class="login-form">
-        <h:inputText a:placeholder="username" value="#{login.username}"></h:inputText>
-        <h:inputSecret  a:placeholder="password" value="#{login.password}"></h:inputSecret>
+        <h:inputText required="true" a:placeholder="username" value="#{login.username}"></h:inputText>
+        <h:inputSecret required="true"  a:placeholder="password" value="#{login.password}"></h:inputSecret>
         <h:commandButton value="login" action="#{login.checkUser()}" class="cbutton"></h:commandButton>
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </h:form>
