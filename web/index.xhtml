@@ -15,11 +15,23 @@
     <h:form class="register-form">
         <h:inputText required="true" a:placeholder="name" value="#{login.name}"></h:inputText>
         <h:inputText required="true" a:placeholder="surname" value="#{login.surname}"></h:inputText>
-        <h:inputText required="true" a:placeholder="email address" value="#{login.email}"></h:inputText>
+        <h:inputText id="mail" required="true" a:placeholder="email address" value="#{login.email}">
+            <f:ajax execute="mail" event="change" render="mailResult"/>
+        </h:inputText>
+        <h:outputText class="alert" value="#{login.mailResult}" id="mailResult"></h:outputText>
         <h:inputText a:placeholder="institution" value="#{login.institution}"></h:inputText>
-        <h:inputText required="true" a:placeholder="username" value="#{login.username}"></h:inputText>
-        <h:inputSecret required="true" a:placeholder="password" value="#{login.password}"></h:inputSecret>
-        <h:inputSecret required="true" a:placeholder="confirm password" value="#{login.confirmedPsw}"></h:inputSecret>
+        <h:inputText id="username" required="true" a:placeholder="username" value="#{login.username}">
+            <f:ajax execute="username" event="change" render="usrResult"/>
+        </h:inputText>
+        <h:outputText class="alert" value="#{login.usrResult}" id="usrResult"></h:outputText>
+        <h:inputSecret id="password" required="true" a:placeholder="password" value="#{login.password}">
+            <f:ajax execute="password" event="change" render="pswResult"/>
+        </h:inputSecret>
+        <h:outputText class="alert" value="#{login.pswResult}" id="pswResult"></h:outputText>
+        <h:inputSecret required="true" a:placeholder="confirm password" value="#{login.confirmedPsw}">
+            <f:ajax execute="pswConfirmed" event="change" render="pswcnfResult"/>
+        </h:inputSecret>
+        <h:outputText class="alert" value="#{login.pswcnfResult}" id="pswcnfResult"></h:outputText>
         <h:selectOneMenu class="menu" value="#{login.gender}">
             <f:selectItem itemValue="F" itemLabel="female"/>
             <f:selectItem itemValue="M" itemLabel="male"/>
@@ -40,6 +52,7 @@
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </h:form>
     <h:form class="login-form">
+        <h:outputText class="alert" value="#{login.loginResult}" id="pswResult"></h:outputText>
         <h:inputText required="true" a:placeholder="username" value="#{login.username}"></h:inputText>
         <h:inputSecret required="true"  a:placeholder="password" value="#{login.password}"></h:inputSecret>
         <h:commandButton value="login" action="#{login.checkUser()}" class="cbutton"></h:commandButton>

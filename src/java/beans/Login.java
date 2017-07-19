@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import util.HibernateUtil;
 
+
 /**
  *
  * @author Ana
@@ -27,11 +28,11 @@ public class Login {
 
     private String name;
      private String surname;
-     private String email;
+     private String email = "";
      private String institution;
-     private String username;
-     private String password;
-     private String confirmedPsw;
+     private String username = "";
+     private String password = "";
+     private String confirmedPsw = "";
      private String gender;
      private String picture;
      private String shirtSize;
@@ -42,6 +43,14 @@ public class Login {
     private boolean logged = false;
     
     private HibernateUtil h = new HibernateUtil();
+    
+    
+    private String usrResult = "";
+    private String pswResult = "";
+    private String pswcnfResult = "";
+    private String mailResult = "";
+    
+    private String loginResult = "";
 
     public String getUsername() {
         return username;
@@ -141,8 +150,85 @@ public class Login {
         this.u = u;
         logged = true;
     }
+
+    public String getUsrResult() {
+        h.getSession().beginTransaction();
+        Query q = h.getSession().createQuery("from User where username=:username");
+        q.setString("username", username);
+        
+        h.getSession().getTransaction().commit();        
+        List l;
+        l = q.list();
+        
+        if (l.size() == 1) {
+            usrResult = "Username you have chosen is already in use!";
+        }
+        else usrResult = "";
+        
+        return usrResult;
+    }
+
+    public void setUsrResult(String usrResult) {
+        this.usrResult = usrResult;
+    }
+
+    public String getPswResult() {
+        pswResult = "";
+        if (!password.isEmpty()) {
+            if ((password.length() < 8 || password.length() > 12)) {
+            pswResult = "Password must be longer than 8 characters or shorter than 12 characters!";
+        }
+           if( !password.matches("^[0-9a-zA-Z](?=.*?[A-Z])(?=.{3,}?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,12}$")) {
+               pswResult += "\nPassword must have at least one upper case, at least three lower case,"
+                       + " at least one digit and at least one special character and must start with letter or digit!";
+           }
+           //if (!password.matches(".\\1{,2}")) pswResult += "\nSame character must be repeated maximum 2 times!";
+        }
+        else pswResult = "";
+        //min br velikih slova je 1, min br malih slova je 3, min br numerika je 1 i spec karaktera 1 
+        
+        return pswResult;
+    }
+
+    public void setPswResult(String pswResult) {
+        this.pswResult = pswResult;
+    }
+
+    public String getPswcnfResult() {
+        if ( !confirmedPsw.equals(password)) {
+            pswcnfResult = "Password doesn't match!";
+        }
+        else pswcnfResult = "";
+        return pswcnfResult;
+    }
+
+    public void setPswcnfResult(String pswcnfResult) {
+        this.pswcnfResult = pswcnfResult;
+    }
+
+    public String getLoginResult() {
+        return loginResult;
+    }
+
+    public void setLoginResult(String loginResult) {
+        this.loginResult = loginResult;
+    }
+
+    public String getMailResult() {
+        if (!email.isEmpty() && !email.matches("(?i)\\b[\\d!#$%&'*+./=?_`a-z{|}~^-]++@[\\d.a-z-]+\\.[a-z]{2,63}+\\b")) {
+            mailResult = "Mail format is not correct!";
+        }
+        else mailResult = "";
+        return mailResult;
+    }
+
+    public void setMailResult(String mailResult) {
+        this.mailResult = mailResult;
+    }
     
     
+    
+ 
     
     public boolean checkUser() {
         h.getSession().beginTransaction();
@@ -156,10 +242,14 @@ public class Login {
         
         if (l.size() == 1) {
             u = (User) l.get(0);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("user", u);
             logged = true;
+            loginResult = "";
             return true;
         }
-     
+        
+        loginResult = "Something is wrong! Check username or password!";
         return false;
     }
     
@@ -193,6 +283,8 @@ public class Login {
             u.setRole("R");
             h.getSession().save(u);
             h.getSession().getTransaction().commit();
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("user", u);
             logged = true;
             return true;
         }
@@ -203,6 +295,8 @@ public class Login {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
         session.invalidate();
+        context.getExternalContext().getSessionMap().remove("user", u);
+        u = null;
         logged = false;
         return true;
     }

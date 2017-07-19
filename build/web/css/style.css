@@ -111,3 +111,8 @@ body .login{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+
+.alert {
+    color: red;
+    font-family: "Roboto", sans-serif;
+}
