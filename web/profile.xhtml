@@ -5,7 +5,7 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Conferences Site | Index</title>
+        <title>Conferences Site | Profile</title>
         
         <link rel="stylesheet" href="css/style2.css"></link>
     </h:head>
@@ -34,15 +34,12 @@
                                         <h1><a href="#">Conferences</a></h1>
                                 </div>
                                 <div id="menu">
-                                    <ul>
-                                            <li class="current_page_item"><a href="main.xhtml">Homepage</a></li>
-                                            <h:form rendered="#{not empty request.remoteUser}">
-                                                <li><h:commandLink value="My conferences" action="myconferences.xhtml"/></li>
-                                                <li><h:commandLink value="Inbox" action="inbox.xhtml"/></li>
-                                                <li><h:commandLink value="#{login.username}" action="profile.xhtml"/></li> <!-- ovde moze da se napise i korisnicko ime -->
-                                                <li><h:commandLink  action="#{login.logout()}" value="LOGOUT"></h:commandLink></li>
-                                            </h:form>
-                                            <li><h:link value="Login" outcome="index" rendered="#{empty request.remoteUser}" /></li>
+                                        <ul>
+                                                <li><a href="main.xhtml">Homepage</a></li>
+                                                <li><a href="myconferences.xhtml">My Conferences</a></li>
+                                                <li><a href="inbox.xhtml">Inbox</a></li>
+                                                <li class="current_page_item"><a href="profile.xhtml">Profile</a></li> <!-- ovde moze da se napise i korisnicko ime -->
+                                                <li><h:form><h:commandLink  action="#{login.logout()}" value="LOGOUT"></h:commandLink></h:form></li>
                                         </ul>
                                 </div>
                         </div>

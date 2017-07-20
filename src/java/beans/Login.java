@@ -7,12 +7,16 @@ package beans;
 
 import entities.User;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import util.HibernateUtil;
@@ -51,6 +55,8 @@ public class Login {
     private String mailResult = "";
     
     private String loginResult = "";
+    
+    
 
     public String getUsername() {
         return username;
@@ -182,7 +188,7 @@ public class Login {
                pswResult += "\nPassword must have at least one upper case, at least three lower case,"
                        + " at least one digit and at least one special character and must start with letter or digit!";
            }
-           //if (!password.matches(".\\1{,2}")) pswResult += "\nSame character must be repeated maximum 2 times!";
+           //if (!password.matches("(.{,2})\\1")) pswResult += "\nSame character must be repeated maximum 2 times!";
         }
         else pswResult = "";
         //min br velikih slova je 1, min br malih slova je 3, min br numerika je 1 i spec karaktera 1 
@@ -244,9 +250,15 @@ public class Login {
             u = (User) l.get(0);
             FacesContext context = FacesContext.getCurrentInstance();
             context.getExternalContext().getSessionMap().put("user", u);
-            logged = true;
-            loginResult = "";
-            return true;
+            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+            try {
+                request.login(username, password);
+                logged = true;
+                loginResult = "";
+                return true;
+            } catch (ServletException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         loginResult = "Something is wrong! Check username or password!";
@@ -284,11 +296,17 @@ public class Login {
             h.getSession().save(u);
             h.getSession().getTransaction().commit();
             FacesContext context = FacesContext.getCurrentInstance();
-            context.getExternalContext().getSessionMap().put("user", u);
-            logged = true;
-            return true;
+            context.getExternalContext().getRequest();
+            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+            try {
+                request.login(username, password);
+                logged = true;
+                return true;
+            } catch (ServletException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
+        return false;
     }
     
     public boolean logout() {
