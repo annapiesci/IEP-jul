@@ -4,65 +4,250 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-        
-        <link rel="stylesheet" href="css/style.css"></link>
-    </h:head>
-    <h:body class="login">
-  <div class="login-page">
-  <div class="form">
-    <h:form class="register-form">
-        <h:inputText required="true" a:placeholder="name" value="#{login.name}"></h:inputText>
-        <h:inputText required="true" a:placeholder="surname" value="#{login.surname}"></h:inputText>
-        <h:inputText id="mail" required="true" a:placeholder="email address" value="#{login.email}">
-            <f:ajax execute="mail" event="change" render="mailResult"/>
-        </h:inputText>
-        <h:outputText class="alert" value="#{login.mailResult}" id="mailResult"></h:outputText>
-        <h:inputText a:placeholder="institution" value="#{login.institution}"></h:inputText>
-        <h:inputText id="username" required="true" a:placeholder="username" value="#{login.username}">
-            <f:ajax execute="username" event="change" render="usrResult"/>
-        </h:inputText>
-        <h:outputText class="alert" value="#{login.usrResult}" id="usrResult"></h:outputText>
-        <h:inputSecret id="password" required="true" a:placeholder="password" value="#{login.password}">
-            <f:ajax execute="password" event="change" render="pswResult"/>
-        </h:inputSecret>
-        <h:outputText class="alert" value="#{login.pswResult}" id="pswResult"></h:outputText>
-        <h:inputSecret required="true" a:placeholder="confirm password" value="#{login.confirmedPsw}">
-            <f:ajax execute="pswConfirmed" event="change" render="pswcnfResult"/>
-        </h:inputSecret>
-        <h:outputText class="alert" value="#{login.pswcnfResult}" id="pswcnfResult"></h:outputText>
-        <h:selectOneMenu class="menu" value="#{login.gender}">
-            <f:selectItem itemValue="F" itemLabel="female"/>
-            <f:selectItem itemValue="M" itemLabel="male"/>
-        </h:selectOneMenu>
-        <h:inputText a:placeholder="profile picture link" value="#{login.picture}"></h:inputText>
-        <h:selectOneMenu class="menu" value="#{login.shirtSize}">
-            <f:selectItem itemValue="XS" itemLabel="XS"/>
-            <f:selectItem itemValue="S" itemLabel="S"/>
-            <f:selectItem itemValue="M" itemLabel="M"/>
-            <f:selectItem itemValue="L" itemLabel="L"/>
-            <f:selectItem itemValue="XL" itemLabel="XL"/>
-            <f:selectItem itemValue="XXL" itemLabel="XXL"/>
-        </h:selectOneMenu>
-        <h:inputText a:placeholder="linkedin profile link" value="#{login.linkedin}"></h:inputText>
-        
-        
-        <h:commandButton value="register" class="cbutton" action="#{login.newUser()}"></h:commandButton>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </h:form>
-    <h:form class="login-form">
-        <h:outputText class="alert" value="#{login.loginResult}" id="pswResult"></h:outputText>
-        <h:inputText required="true" a:placeholder="username" value="#{login.username}"></h:inputText>
-        <h:inputSecret required="true"  a:placeholder="password" value="#{login.password}"></h:inputSecret>
-        <h:commandButton value="login" action="#{login.checkUser()}" class="cbutton"></h:commandButton>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </h:form>
+<h:head>
+<title>BuildUp Real Estate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="css/style.css"></link>
+</h:head>
+<h:body>
+<div id="main_container">
+  <div id="header">
+    <div id="logo"> <a href="#"><img src="images/logo.gif" width="147" height="78" alt="" border="0" /></a> </div>
+    <div class="banner_adds"></div>
+    <div class="menu">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="admin.xhtml">Admin
+          <!--[if IE 7]><!-->
+          </a>
+          <!--<![endif]-->
+          <!--[if lte IE 6]><table><tr><td><![endif]-->
+          <ul>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+          </ul>
+          <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+        </li>
+        <li><a href="login.html">Login
+          <!--[if IE 7]><!-->
+          </a>
+          <!--<![endif]-->
+          <!--[if lte IE 6]><table><tr><td><![endif]-->
+          <ul>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+          </ul>
+          <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+        </li>
+        <li><a href="list.html">Renting Homes
+          <!--[if IE 7]><!-->
+          </a>
+          <!--<![endif]-->
+          <!--[if lte IE 6]><table><tr><td><![endif]-->
+          <ul>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+          </ul>
+          <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+        </li>
+        <li><a href="#">About Us </a></li>
+        <li><a href="#">Customers</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="contact.xhtml">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="main_content">
+    <div class="column1">
+      <div class="left_box">
+        <div class="top_left_box"> </div>
+        <div class="center_left_box">
+          <div class="box_title"><span>Find</span> your place:</div>
+          <div class="form">
+            <div class="form_row">
+              <label class="left">City: </label>
+              <input type="text" class="form_input" />
+            </div>
+            <div class="form_row">
+              <label class="left">State: </label>
+              <input type="text" class="form_input" />
+            </div>
+            <div class="form_row">
+              <label class="left">Price: </label>
+              <input type="text" class="form_input" value="minimum" />
+            </div>
+            <div class="form_row">
+              <label class="left">To: </label>
+              <input type="text" class="form_input" value="maximum" />
+            </div>
+            <div class="form_row">
+              <label class="left">Rooms: </label>
+              <input type="text" class="form_input" />
+            </div>
+            <div class="form_row">
+              <label class="left_long">Looking for to:</label>
+            </div>
+            <div class="form_row">
+              <input type="radio" name="reason" />
+              sell home</div>
+            <div class="form_row">
+              <input type="radio" name="reason" />
+              buy home</div>
+            <div class="form_row">
+              <input type="radio" name="reason" />
+              rent home</div>
+            <div style="float:right; padding:10px 25px 0 0;">
+              <input type="image" src="images/find.gif" />
+            </div>
+          </div>
+        </div>
+        <div class="bottom_left_box"> </div>
+      </div>
+      <div class="left_box">
+        <div class="top_left_box"> </div>
+        <div class="center_left_box">
+          <div class="box_title"><span>Login:</span> </div>
+          <div class="form">
+            <h:form>
+                <div class="form_row"><h:outputText value="#{login.loginResult}" id="pswResult" style="color: red"></h:outputText></div>
+                    <div class="form_row">
+                        <h:inputText class="form_input" a:placeholder="username" value="#{login.username}"></h:inputText>
+                    </div>
+                    <div class="form_row">
+                        <h:inputSecret class="form_input" a:placeholder="password" value="#{login.password}"></h:inputSecret>
+                    </div>
+                    <div class="form_row">
+                        <p class="message">Not registered? <a href="register.xhtml">Create an account</a></p>
+                    </div>
+                
+            <div style="float:right; padding:10px 25px 0 0;">
+                    <h:commandButton image="images/join.gif" action="#{login.checkUser()}"></h:commandButton>
+              <!--<input type="image" src="images/join.gif" />-->
+            </div>
+                    </h:form>
+          </div>
+        </div>
+        <div class="bottom_left_box"> </div>
+      </div>
+      <div class="left_box">
+        <div class="top_left_box"> </div>
+        <div class="center_left_box">
+          <div class="box_title"><span>Contact</span> information:</div>
+          <div class="form">
+            <div class="form_row"> <img src="images/contact_envelope.gif" width="50" height="47" border="0" class="img_right" alt="" />
+              <div class="contact_information"> Email: info@comapnyname.com<br />
+                Telephone: 0234 789 90<br />
+                Mobile: 234 345 234534<br />
+                Fax: 34534 3456 3456(54)<br />
+                <br />
+                <span>www.companyname.com</span> </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom_left_box"> </div>
+      </div>
+    </div>
+    <!-- end of column one -->
+    <div class="column2">
+      <div class="main_text_box">
+        <h2>About Us</h2>
+        <p> &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br />
+          <br />
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&quot; </p>
+      </div>
+      <div class="main_text_box">
+        <h2>Request a proposal</h2>
+        <div class="proposal">
+          <p class="proposal_text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end of column two -->
+    <div class="column3">
+      <div class="small_title">Latest offers</div>
+      <div class="offer_box"> <a href="#"><img src="images/p1.jpg" width="130" height="98" class="img_left" alt="" border="0" /></a>
+        <div class="offer_info"> <span>For Sale 150 000 $</span>
+          <p class="offer"> &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&quot; </p>
+          <div class="more"><a href="#">...more</a></div>
+        </div>
+      </div>
+      <div class="offer_box"> <a href="#"><img src="images/p2.jpg" width="130" height="98" class="img_left" alt="" border="0" /></a>
+        <div class="offer_info"> <span>For Sale 220 000 $</span>
+          <p class="offer"> &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&quot; </p>
+          <div class="more"><a href="#">...more</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- end of column three -->
+    <div class="column4">
+      <div class="title">Special Offers</div>
+      <div class="offer_box_wide"> <a href="#"><img src="images/p1.jpg" width="130" height="98" class="img_left" alt="" border="0" /></a>
+        <div class="offer_info"> <span>For Sale 150 000 $</span>
+          <p class="offer"> &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&quot; </p>
+          <div class="more"><a href="#">...more</a></div>
+        </div>
+      </div>
+      <div class="offer_box_wide"> <a href="#"><img src="images/p2.jpg" width="130" height="98" class="img_left" alt="" border="0" /></a>
+        <div class="offer_info"> <span>For Sale 220 000 $</span>
+          <p class="offer"> &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&quot; </p>
+          <div class="more"><a href="#">...more</a></div>
+        </div>
+      </div>
+      <div class="offer_box_wide"> <a href="#"><img src="images/p1.jpg" width="130" height="98" class="img_left" alt="" border="0" /></a>
+        <div class="offer_info"> <span>For Sale 150 000 $</span>
+          <p class="offer"> &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&quot; </p>
+          <div class="more"><a href="#">...more</a></div>
+        </div>
+      </div>
+      <div class="offer_box_wide"> <a href="#"><img src="images/p2.jpg" width="130" height="98" class="img_left" alt="" border="0" /></a>
+        <div class="offer_info"> <span>For Sale 220 000 $</span>
+          <p class="offer"> &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&quot; </p>
+          <div class="more"><a href="#">...more</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- end of column four -->
+  </div>
+  <!-- end of main_content -->
+  <div id="footer">
+    <div id="copyright">
+      <div style="float:left; padding:3px;"><a href="#"><img src="images/footer_logo.gif" width="42" height="35" alt="" border="0" /></a></div>
+      <div style="float:left; padding:14px 10px 10px 10px;"> Company name.&copy; All Rights Reserved 2008 - By <a href="http://csscreme.com" style="color:#772c17;">csscreme</a></div>
+    </div>
+    <ul class="footer_menu">
+      <li><a href="#" class="nav_footer"> Home </a></li>
+      <li><a href="#" class="nav_footer"> Selling Homes </a></li>
+      <li><a href="#" class="nav_footer"> Buying Homes </a></li>
+      <li><a href="#" class="nav_footer"> Renting Homes</a></li>
+      <li><a href="#" class="nav_footer"> RSS </a></li>
+      <li><a href="#" class="nav_footer"> Contact </a></li>
+    </ul>
   </div>
 </div>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-    <script src="js/index.js"></script>
-    </h:body>
+<!-- end of main_container -->
+</h:body>
 </html>
-

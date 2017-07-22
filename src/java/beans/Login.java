@@ -44,7 +44,7 @@ public class Login {
      
     
     private User u;
-    private boolean logged = false;
+    private boolean logged = true;
     
     private HibernateUtil h = new HibernateUtil();
     
@@ -251,17 +251,13 @@ public class Login {
             FacesContext context = FacesContext.getCurrentInstance();
             context.getExternalContext().getSessionMap().put("user", u);
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-            try {
-                request.login(username, password);
-                logged = true;
-                loginResult = "";
-                return true;
-            } catch (ServletException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            logged = true;
+            loginResult = "";
+            return true;
         }
         
         loginResult = "Something is wrong! Check username or password!";
+        logged = false;
         return false;
     }
     
@@ -276,6 +272,7 @@ public class Login {
         
         if (!l.isEmpty()) {
             h.getSession().getTransaction().commit();
+            logged = false;
             return false;
         }
         
@@ -298,15 +295,10 @@ public class Login {
             FacesContext context = FacesContext.getCurrentInstance();
             context.getExternalContext().getRequest();
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-            try {
-                request.login(username, password);
-                logged = true;
-                return true;
-            } catch (ServletException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            logged = true;
+            return true;
         }
-        return false;
+        //return false;
     }
     
     public boolean logout() {
