@@ -87,17 +87,23 @@
         <div class="center_left_box">
           <div class="box_title"><span>Admin</span> login</div>
           <div class="form">
-            <div class="form_row">
-              <label class="left">Username: </label>
-              <input type="text" class="form_input"/>
-            </div>
-            <div class="form_row">
-              <label class="left">Password: </label>
-              <input type="password" class="form_input"/>
-            </div>
+            <h:form>
+                <div class="form_row"><h:outputText value="#{login.loginResult}" id="pswResult" style="color: red"></h:outputText></div>
+                    <div class="form_row">
+                        <h:inputText class="form_input" a:placeholder="username" value="#{login.username}"></h:inputText>
+                    </div>
+                    <div class="form_row">
+                        <h:inputSecret class="form_input" a:placeholder="password" value="#{login.password}"></h:inputSecret>
+                    </div>
+                    <div class="form_row">
+                        <p class="message">Not registered? <a href="register.xhtml">Create an account</a></p>
+                    </div>
+                
             <div style="float:right; padding:10px 25px 0 0;">
-              <input type="image" src="images/login.gif"/>
+                    <h:commandButton image="images/join.gif" action="#{login.checkUser()}"></h:commandButton>
+              <!--<input type="image" src="images/join.gif" />-->
             </div>
+                    </h:form>
           </div>
         </div>
         <div class="bottom_left_box"> </div>

@@ -85,19 +85,69 @@
       <div class="left_box">
         <div class="top_left_box"> </div>
         <div class="center_left_box">
-          <div class="box_title"><span>Admin</span> login</div>
+          <div class="box_title"><span>Register</span> to our service</div>
           <div class="form">
+              <h:form>
             <div class="form_row">
-              <label class="left">Username: </label>
-              <input type="text" class="form_input"/>
+                <h:inputText class="form_input" required="true" a:placeholder="name" value="#{login.name}"></h:inputText>
             </div>
             <div class="form_row">
-              <label class="left">Password: </label>
-              <input type="password" class="form_input"/>
+              <h:inputText class="form_input" required="true" a:placeholder="surname" value="#{login.surname}"></h:inputText>
+            </div>
+            <div class="form_row">
+                <h:inputText class="form_input" id="mail" required="true" a:placeholder="email address" value="#{login.email}">
+                    <f:ajax execute="mail" event="change" render="mailResult"/>
+                </h:inputText>
+                <h:outputText class="alert" value="#{login.mailResult}" id="mailResult"></h:outputText>
+            </div>
+            <div class="form_row">
+                <h:inputText class="form_input" a:placeholder="institution" value="#{login.institution}"></h:inputText>
+            </div>
+            <div class="form_row">
+                <h:inputText class="form_input" id="username" required="true" a:placeholder="username" value="#{login.username}">
+                    <f:ajax execute="username" event="change" render="usrResult"/>
+                </h:inputText>
+		<h:outputText class="alert" value="#{login.usrResult}" id="usrResult"></h:outputText>
+            </div>
+            <div class="form_row">
+                <h:inputSecret class="form_input" id="password" required="true" a:placeholder="password" value="#{login.password}">
+                    <f:ajax execute="password" event="change" render="pswResult"/>
+                </h:inputSecret>
+		<h:outputText class="alert" value="#{login.pswResult}" id="pswResult"></h:outputText>
+            </div>
+            <div class="form_row">
+                <h:inputSecret class="form_input" required="true" a:placeholder="confirm password" value="#{login.confirmedPsw}">
+                    <f:ajax execute="pswConfirmed" event="change" render="pswcnfResult"/>
+                </h:inputSecret>
+		<h:outputText class="alert" value="#{login.pswcnfResult}" id="pswcnfResult"></h:outputText>
+            </div>
+            <div class="form_row">
+                <h:selectOneMenu class="form_input" value="#{login.gender}">
+                    <f:selectItem itemValue="F" itemLabel="female"/>
+                    <f:selectItem itemValue="M" itemLabel="male"/>
+                </h:selectOneMenu>
+            </div>
+            <div class="form_row">
+                <h:inputText class="form_input" a:placeholder="profile picture link" value="#{login.picture}"></h:inputText>
+            </div>
+            <div class="form_row">
+                <h:selectOneMenu class="form_input" value="#{login.shirtSize}">
+                    <f:selectItem itemValue="XS" itemLabel="XS"/>
+                    <f:selectItem itemValue="S" itemLabel="S"/>
+                    <f:selectItem itemValue="M" itemLabel="M"/>
+                    <f:selectItem itemValue="L" itemLabel="L"/>
+                    <f:selectItem itemValue="XL" itemLabel="XL"/>
+                    <f:selectItem itemValue="XXL" itemLabel="XXL"/>
+                </h:selectOneMenu>
+            </div>
+            <div class="form_row">
+                <h:inputText class="form_input" a:placeholder="linkedin profile link" value="#{login.linkedin}"></h:inputText>
             </div>
             <div style="float:right; padding:10px 25px 0 0;">
-              <input type="image" src="images/login.gif"/>
+               <h:commandButton image="images/login.gif" action="#{login.newUser()}"></h:commandButton>
+               <p class="message">Already registered? <a href="login.xhtml">Sign In</a></p>
             </div>
+              </h:form>
           </div>
         </div>
         <div class="bottom_left_box"> </div>
